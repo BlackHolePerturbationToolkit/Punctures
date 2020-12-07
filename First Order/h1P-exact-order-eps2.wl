@@ -1,18 +1,19 @@
 (* ::Package:: *)
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Parameters*)
 
 
 wp = 32;
 mpmax= 10;
-lmax = 20;
+lmax = 40;
+lmin = 0;
 \[CapitalDelta]rmax = 2;
 M = 1;
-r0 = 525/100 M;
+(*r0 = 650/100 M;*)
 norder = 4;
 rundir = "~/projects/SecondOrder/Pfields/r0_"<>ToString[N[r0]];
-outdir = rundir<>"/order_eps2_lmax"<>ToString[lmax]<>"_mpmax"<>ToString[mpmax];
+outdir = rundir<>"/order_eps2_lmin"<>ToString[lmin]<>"_lmax"<>ToString[lmax]<>"_mpmax"<>ToString[mpmax];
 
 
 If[!DirectoryQ[outdir], CreateDirectory[outdir]];
@@ -830,7 +831,7 @@ Print["h1"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h1PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[1][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,0,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[0,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h1PMemo.m"}],h1PMemo];
@@ -842,7 +843,7 @@ Print["h2"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h2PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[2][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h2PMemo.m"}],h2PMemo];
@@ -854,7 +855,7 @@ Print["h3"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h3PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[3][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,0,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[0,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h3PMemo.m"}],h3PMemo];
@@ -866,7 +867,7 @@ Print["h4"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h4PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[4][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h4PMemo.m"}],h4PMemo];
@@ -878,7 +879,7 @@ Print["h5"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h5PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[5][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h5PMemo.m"}],h5PMemo];
@@ -890,7 +891,7 @@ Print["h6"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h6PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[6][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,0,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[0,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h6PMemo.m"}],h6PMemo];
@@ -902,7 +903,7 @@ Print["h7"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h7PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[7][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,2,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[2,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h7PMemo.m"}],h7PMemo];
@@ -914,7 +915,7 @@ Print["h8"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h8PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[8][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h8PMemo.m"}],h8PMemo];
@@ -926,7 +927,7 @@ Print["h9"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h9PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[9][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h9PMemo.m"}],h9PMemo];
@@ -938,7 +939,7 @@ Print["h10"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 h10PMemo[l,m,r0,M,\[CapitalDelta]r]=If[\[CapitalDelta]r==0,Indeterminate,hP[10][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,2,lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[2,lmin],lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"h10PMemo.m"}],h10PMemo];
@@ -973,7 +974,7 @@ Print["dh1"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh1PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[1][l,m,r0,M,\[CapitalDelta]r,1]];
-,{\[CapitalDelta]r,grid-r0},{l,0,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[0,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh1PMemo.m"}],dh1PMemo];
@@ -985,7 +986,7 @@ Print["dh2"];
 ParallelTable[
 If[m==1,Print[{N[\[CapitalDelta]r],l,m}]];
 dh2PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[2][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh2PMemo.m"}],dh2PMemo];
@@ -997,7 +998,7 @@ Print["dh3"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh3PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[3][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,0,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[0,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh3PMemo.m"}],dh3PMemo];
@@ -1009,7 +1010,7 @@ Print["dh4"];
 ParallelTable[
 If[m==1,Print[{N[\[CapitalDelta]r],l,m}]];
 dh4PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[4][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh4PMemo.m"}],dh4PMemo];
@@ -1021,7 +1022,7 @@ Print["dh5"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh5PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[5][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh5PMemo.m"}],dh5PMemo];
@@ -1033,7 +1034,7 @@ Print["dh6"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh6PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[6][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,0,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[0,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh6PMemo.m"}],dh6PMemo];
@@ -1045,7 +1046,7 @@ Print["dh7"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh7PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[7][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,2,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[2,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh7PMemo.m"}],dh7PMemo];
@@ -1057,7 +1058,7 @@ Print["dh8"];
 ParallelTable[
 If[m==1,Print[{N[\[CapitalDelta]r],l,m}]];
 dh8PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[8][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh8PMemo.m"}],dh8PMemo];
@@ -1069,7 +1070,7 @@ Print["dh9"];
 ParallelTable[
 If[m==2,Print[{N[\[CapitalDelta]r],l,m}]];
 dh9PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[9][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh9PMemo.m"}],dh9PMemo];
@@ -1081,7 +1082,7 @@ Print["dh10"];
 ParallelTable[
 If[m==2,Print[{N[\[CapitalDelta]r],l,m}]];
 dh10PMemo[l,m,r0,M,\[CapitalDelta]r,1]=If[\[CapitalDelta]r==0,Indeterminate,dhP[10][l,m,r0,M,\[CapitalDelta]r]];
-,{\[CapitalDelta]r,grid-r0},{l,2,lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[2,lmin],lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"dh10PMemo.m"}],dh10PMemo];
@@ -1116,7 +1117,7 @@ Print["ddh1"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh1PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[1][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,0,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[0,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh1PMemo.m"}],dh1PMemo];
@@ -1128,7 +1129,7 @@ Print["ddh2"];
 ParallelTable[
 If[m==1,Print[{N[\[CapitalDelta]r],l,m}]];
 dh2PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[2][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh2PMemo.m"}],dh2PMemo];
@@ -1140,7 +1141,7 @@ Print["ddh3"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh3PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[3][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,0,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[0,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh3PMemo.m"}],dh3PMemo];
@@ -1152,7 +1153,7 @@ Print["ddh4"];
 ParallelTable[
 If[m==1,Print[{N[\[CapitalDelta]r],l,m}]];
 dh4PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[4][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh4PMemo.m"}],dh4PMemo];
@@ -1164,7 +1165,7 @@ Print["ddh5"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh5PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[5][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh5PMemo.m"}],dh5PMemo];
@@ -1176,7 +1177,7 @@ Print["ddh6"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh6PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[6][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,0,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[0,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh6PMemo.m"}],dh6PMemo];
@@ -1188,7 +1189,7 @@ Print["ddh7"];
 ParallelTable[
 If[m==0,Print[{N[\[CapitalDelta]r],l,m}]];
 dh7PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[7][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,2,lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[2,lmin],lmax},{m,0,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh7PMemo.m"}],dh7PMemo];
@@ -1200,7 +1201,7 @@ Print["ddh8"];
 ParallelTable[
 If[m==1,Print[{N[\[CapitalDelta]r],l,m}]];
 dh8PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[8][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,1,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh8PMemo.m"}],dh8PMemo];
@@ -1212,7 +1213,7 @@ Print["ddh9"];
 ParallelTable[
 If[m==2,Print[{N[\[CapitalDelta]r],l,m}]];
 dh9PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[9][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,1,lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[1,lmin],lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh9PMemo.m"}],dh9PMemo];
@@ -1224,7 +1225,7 @@ Print["ddh10"];
 ParallelTable[
 If[m==2,Print[{N[\[CapitalDelta]r],l,m}]];
 dh10PMemo[l,m,r0,M,\[CapitalDelta]r,2]=If[\[CapitalDelta]r==0,Indeterminate,dhP[10][l,m,r0,M,\[CapitalDelta]r,2]];
-,{\[CapitalDelta]r,grid-r0},{l,2,lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
+,{\[CapitalDelta]r,grid-r0},{l,Max[2,lmin],lmax},{m,2,Min[l,mpmax],2},DistributedContexts->None,Method->"FinestGrained"];
 
 
 Save[FileNameJoin[{outdir,"ddh10PMemo.m"}],dh10PMemo];
