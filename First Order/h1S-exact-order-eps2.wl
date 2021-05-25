@@ -176,9 +176,12 @@ r0="<>ToString[r0]<>"
 mmax="<>ToString[mmax]<>"
 lmax="<>ToString[lmax]<>"
 lmaxret="<>ToString[lmaxret]<>"
-\[CapitalDelta]rmax="<>\[CapitalDelta]rmax<>"
+\[CapitalDelta]rmax="<>ToString[\[CapitalDelta]rmax]<>"
 h1P="<>h1PFile<>"
 h1dir="<>h1dir];
+
+
+r0=Rationalize[r0];
 
 
 grid=Import[FileNameJoin[{h1dir,"no-ddh/h1ret/h1-l0m0.h5"}],{"Datasets","grid"}]/.{Sequence[N@r0,N@r0]->Sequence[N@r0,N@r0], N@r0->Sequence[N@r0,N@r0]};
@@ -220,7 +223,7 @@ r0i[[1,1]]+1==r0i[[2,1]]&&Dimensions[r0i]=={2,1}&&sizel==r0i[[1,1]]&&sizel+sizer
 ClearAll[data]
 
 
-data[l_,m_]:=data[l,m]=Check[Join@@ImportHDF5[FileNameJoin[{h1dir, "no-ddh","h1ret","h1-l"<>ToString[l]<>"m"<>ToString[m]<>".h5"}],{"Datasets",{"inhom_left","inhom_right"}}],Print[{l,m}]];
+data[l_,m_]:=data[l,m]=Check[Join@@Import[FileNameJoin[{h1dir, "no-ddh","h1ret","h1-l"<>ToString[l]<>"m"<>ToString[m]<>".h5"}],{"Datasets",{"inhom_left","inhom_right"}}],Print[{l,m}]];
 
 
 hret[1,l_,m_]:=hret[1,l,m]=Complex@@@data[l,m][[All,{1,2}]];
@@ -313,36 +316,38 @@ hret[10,l_,m_]:=hret[10,l,m]=Complex@@@data[l,m][[All,{5,6}]];
 dhret[10,l_,m_]:=dhret[10,l,m]=Complex@@@data[l,m][[All,{5,6}+2]];
 
 
-Monitor[
+Print["Loading retarded fields"];
+
+
 Do[hret[i,l,m],{i,{1,2,3,6}},{l,(*1*)0,lmaxret},{m,l,1(*0*),-2}];
 Do[hret[i,l,m],{i,{4,5}},{l,1,lmaxret},{m,l,1(*0*),-2}];
 Do[hret[i,l,m],{i,{7}},{l,2,lmaxret},{m,l,1(*0*),-2}];
 Do[hret[i,l,m],{i,{8,9}},{l,1,lmaxret},{m,l-1,0,-2}];
-Do[hret[i,l,m],{i,{10}},{l,2,lmaxret},{m,l-1,0,-2}];,{i,l,m}]
+Do[hret[i,l,m],{i,{10}},{l,2,lmaxret},{m,l-1,0,-2}];
 
 
-Monitor[
 Do[dhret[i,l,m],{i,{1,2,3,6}},{l,0,(*1,*)lmaxret},{m,l,1(*0*),-2}];
 Do[dhret[i,l,m],{i,{4,5}},{l,1,lmaxret},{m,l,1(*0*),-2}];
 Do[dhret[i,l,m],{i,{7}},{l,2,lmaxret},{m,l,1(*0*),-2}];
 Do[dhret[i,l,m],{i,{8,9}},{l,1,lmaxret},{m,l-1,0,-2}];
-Do[dhret[i,l,m],{i,{10}},{l,2,lmaxret},{m,l-1,0,-2}];,{i,l,m}]
+Do[dhret[i,l,m],{i,{10}},{l,2,lmaxret},{m,l-1,0,-2}];
 
 
-Monitor[
 Do[hret[i,l,m]=0.+0.I,{i,{1,2,3,6}},{l,(*1*)2,lmaxret,2},{m,{0}}];
 Do[hret[i,l,m]=0.+0.I,{i,{4,5}},{l,2,lmaxret,2},{m,{0}}];
-Do[hret[i,l,m]=0.+0.I,{i,{7}},{l,2,lmaxret,2},{m,{0}}];,{i,l,m}]
+Do[hret[i,l,m]=0.+0.I,{i,{7}},{l,2,lmaxret,2},{m,{0}}];
 
 
-Monitor[
 Do[dhret[i,l,m]=0.+0.I,{i,{1,2,3,6}},{l,(*1*)2,lmaxret,2},{m,{0}}];
 Do[dhret[i,l,m]=0.+0.I,{i,{4,5}},{l,2,lmaxret,2},{m,{0}}];
-Do[dhret[i,l,m]=0.+0.I,{i,{7}},{l,2,lmaxret,2},{m,{0}}];,{i,l,m}]
+Do[dhret[i,l,m]=0.+0.I,{i,{7}},{l,2,lmaxret,2},{m,{0}}];
 
 
 (* ::Section::Closed:: *)
 (*Compute second derivatives of retarded field using field equations*)
+
+
+Print["Computing second derivatives"];
 
 
 Block[
@@ -365,6 +370,9 @@ Table[ddhret[10,l,m]=Simplify[-(fp/f)drh10+1/f^2 dt^2 h10+1/f ((2M)/r^3+(l(l+1))
 
 (* ::Section::Closed:: *)
 (*Read even static modes*)
+
+
+Print["Reading even static modes"];
 
 
 evenstaticdata[l_,m_]:=evenstaticdata[l,m]=Check[Join@@Import[FileNameJoin[{h1dir, "EvenStatic","h1ret","h1-l"<>ToString[l]<>"m"<>ToString[m]<>".h5"}],{"Datasets",{"inhom_left","inhom_right"}}],Print[{l,m}]];
@@ -398,52 +406,55 @@ ddhret[4,l,0]=Complex@@@evenstaticdata[l,0][[All,{37,38}+4]];,{l,2,lmaxret,2}]
 (*h1S*)
 
 
+Print["Computing h1S"];
+
+
 (*Monitor[Do[hS[i,l,m]=Table[h[i][l,m,mmax,r0,M,\[CapitalDelta]r],{\[CapitalDelta]r,grid-r0}],{i,{1,2,3,4,5,6,8,9}},{l,0,40},{m,l,0,-2}],{i,l,m}]//Timing*)
 
 
-Monitor[Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}],{i,l,m}]//Timing
+Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{4,5}},{l,1,lmax},{m,l,0,-2}],{i,l,m}]//Timing
+Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{4,5}},{l,1,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{7}},{l,2,lmax},{m,l,0,-2}],{i,l,m}]//Timing
+Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{7}},{l,2,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}],{i,l,m}]//Timing
+Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}]//Timing
 
 
-Monitor[Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{10}},{l,2,lmax},{m,l-1,0,-2}],{i,l,m}]//Timing
+Do[hS[i,l,m]=h[i][l,m,mmax,r0,M,\[CapitalDelta]rgridP],{i,{10}},{l,2,lmax},{m,l-1,0,-2}]//Timing
 
 
-Monitor[Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}],{i,l,m}]//Timing
+Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{4,5}},{l,1,lmax},{m,l,0,-2}],{i,l,m}]//Timing
+Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{4,5}},{l,1,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{7}},{l,2,lmax},{m,l,0,-2}],{i,l,m}]//Timing
+Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{7}},{l,2,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}],{i,l,m}]//Timing
+Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}]//Timing
 
 
-Monitor[Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{10}},{l,2,lmax},{m,l-1,0,-2}],{i,l,m}]//Timing
+Do[dhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP],{i,{10}},{l,2,lmax},{m,l-1,0,-2}]//Timing
 
 
-Monitor[Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}],{i,l,m}]//Timing
+Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{4,5}},{l,1,lmax},{m,l,0,-2}],{i,l,m}]//Timing
+Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{4,5}},{l,1,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{7}},{l,2,lmax},{m,l,0,-2}],{i,l,m}]//Timing
+Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{7}},{l,2,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}],{i,l,m}]//Timing
+Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}]//Timing
 
 
-Monitor[Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{10}},{l,2,lmax},{m,l-1,0,-2}],{i,l,m}]//Timing
+Do[ddhS[i,l,m]=dh[i][l,m,mmax,r0,M,\[CapitalDelta]rderivgridP,2],{i,{10}},{l,2,lmax},{m,l-1,0,-2}]//Timing
 
 
 hS[2,0,0]=ConstantArray[0.,Length[\[CapitalDelta]rgridP]];
@@ -468,53 +479,59 @@ ddhS[9,1,0]=ConstantArray[0.,Length[\[CapitalDelta]rgridP]];
 (*h1R*)
 
 
-Monitor[Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}],{l,m}]//Timing
+Print["Computing h1R"];
 
 
-Monitor[Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{4,5}},{l,1,lmax},{m,l,0,-2}],{l,m}]//Timing
+Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{7}},{l,2,lmax},{m,l,0,-2}],{l,m}]//Timing
+Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{4,5}},{l,1,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}],{l,m}]//Timing
+Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{7}},{l,2,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{10}},{l,2,lmax},{m,l-1,0,-2}],{l,m}]//Timing
+Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}]//Timing
 
 
-Monitor[Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}],{l,m}]//Timing
+Do[hR[i,l,m]=hret[i,l,m][[rLi;;rRi]]-hS[i,l,m],{i,{10}},{l,2,lmax},{m,l-1,0,-2}]//Timing
 
 
-Monitor[Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{4,5}},{l,1,lmax},{m,l,0,-2}],{l,m}]//Timing
+Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{7}},{l,2,lmax},{m,l,0,-2}],{l,m}]//Timing
+Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{4,5}},{l,1,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}],{l,m}]//Timing
+Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{7}},{l,2,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{10}},{l,2,lmax},{m,l-1,0,-2}],{l,m}]//Timing
+Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}]//Timing
 
 
-Monitor[Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}],{l,m}]//Timing
+Do[dhR[i,l,m]=dhret[i,l,m][[rLi;;rRi]]-dhS[i,l,m],{i,{10}},{l,2,lmax},{m,l-1,0,-2}]//Timing
 
 
-Monitor[Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{4,5}},{l,1,lmax},{m,l,0,-2}],{l,m}]//Timing
+Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{1,2,3,6}},{l,0,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{7}},{l,2,lmax},{m,l,0,-2}],{l,m}]//Timing
+Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{4,5}},{l,1,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}],{l,m}]//Timing
+Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{7}},{l,2,lmax},{m,l,0,-2}]//Timing
 
 
-Monitor[Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{10}},{l,2,lmax},{m,l-1,0,-2}],{l,m}]//Timing
+Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{8,9}},{l,1,lmax},{m,l-1,0,-2}]//Timing
+
+
+Do[ddhR[i,l,m]=ddhret[i,l,m][[rLi;;rRi]]-ddhS[i,l,m],{i,{10}},{l,2,lmax},{m,l-1,0,-2}]//Timing
 
 
 (* ::Section::Closed:: *)
 (*Export data*)
+
+
+Print["Exporting data"];
 
 
 gridout=Join[grid[[;;sizel-1]],grid[[sizel+1;;]]];
