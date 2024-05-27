@@ -7551,8 +7551,7 @@ CellGroupData[
 Cell[
 TextData[
 Cell[
-BoxData[FormBox[SubscriptBox["h", "tr"], TraditionalForm]],
-FormatType -> TraditionalForm
+BoxData[FormBox[SubscriptBox["h", "tr"], TraditionalForm]]
 ]
 ],
 "Subsection"
@@ -8319,8 +8318,7 @@ CellGroupData[
 Cell[
 TextData[
 Cell[
-BoxData[FormBox[SubscriptBox["h", "rr"], TraditionalForm]],
-FormatType -> TraditionalForm
+BoxData[FormBox[SubscriptBox["h", "rr"], TraditionalForm]]
 ]
 ],
 "Subsection"
@@ -9092,8 +9090,7 @@ TextData[
 Cell[
 BoxData[
 FormBox[SubscriptBox["h", "t\[Theta]"], TraditionalForm]
-],
-FormatType -> TraditionalForm
+]
 ]
 ],
 "Subsection"
@@ -9814,8 +9811,7 @@ TextData[
 Cell[
 BoxData[
 FormBox[SubscriptBox["h", "t\[Phi]"], TraditionalForm]
-],
-FormatType -> TraditionalForm
+]
 ]
 ],
 "Subsection"
@@ -10590,8 +10586,7 @@ TextData[
 Cell[
 BoxData[
 FormBox[SubscriptBox["h", "r\[Theta]"], TraditionalForm]
-],
-FormatType -> TraditionalForm
+]
 ]
 ],
 "Subsection"
@@ -11312,8 +11307,7 @@ TextData[
 Cell[
 BoxData[
 FormBox[SubscriptBox["h", "r\[Phi]"], TraditionalForm]
-],
-FormatType -> TraditionalForm
+]
 ]
 ],
 "Subsection"
@@ -12085,8 +12079,7 @@ FormBox[
 SubscriptBox["h", "\[Theta]\[Theta]"],
 TraditionalForm
 ]
-],
-FormatType -> TraditionalForm
+]
 ]
 ],
 "Subsection"
@@ -12858,8 +12851,7 @@ FormBox[
 SubscriptBox["h", "\[Theta]\[Phi]"],
 TraditionalForm
 ]
-],
-FormatType -> TraditionalForm
+]
 ]
 ],
 "Subsection"
@@ -13580,8 +13572,7 @@ TextData[
 Cell[
 BoxData[
 FormBox[SubscriptBox["h", "\[Phi]\[Phi]"], TraditionalForm]
-],
-FormatType -> TraditionalForm
+]
 ]
 ],
 "Subsection"
@@ -18568,7 +18559,14 @@ RowBox[
 "[",
 RowBox[
 {
-"\"hRab.m\"",
+RowBox[
+{
+"FileNameJoin",
+"[",
+RowBox[{"{", RowBox[{"outDir", ",", "\"hRab.m\""}], "}"}],
+"]"
+}
+],
 ",",
 RowBox[
 {
