@@ -6,6 +6,11 @@ message: >-
   Black Hole Perturbation Toolkit." in any papers.
 type: software
 authors:
+  - given-names: Jeremy
+    family-names: Miller
+    affiliation: Sami Shamoon College Of Engineering
+    email: jeremysharonmiller@gmail.com
+    orcid: 'https://orcid.org/0000-0002-6862-1335'
   - given-names: Adam
     family-names: Pound
     affiliation: University of Southampton
