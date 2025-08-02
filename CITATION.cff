@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: Punctures
+message: >-
+  If you use this software, please cite its Zenodo record
+  and include the acknowledgment "This work makes use of the
+  Black Hole Perturbation Toolkit." in any papers.
+type: software
+authors:
+  - given-names: Adam
+    family-names: Pound
+    affiliation: University of Southampton
+    email: A.Pound@soton.ac.uk
+    orcid: 'https://orcid.org/0000-0001-9446-0638'
+  - given-names: Sam
+    family-names: Upton
+    email: S.Upton@soton.ac.uk
+    affiliation: University of Southampton
+    orcid: 'https://orcid.org/0000-0003-2965-7674'
+  - given-names: Barry
+    family-names: Wardell
+    email: barry.wardell@ucd.ie
+    affiliation: University College Dublin
+    orcid: 'https://orcid.org/0000-0001-6176-9006'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.XXXXXXX
+    description: Latest release on Zenodo
+  - type: other
+    value: 'arXiv:2508.XXXXX'
+    description: ArXiv preprint of the paper
+repository-code: 'https://github.com/BlackHolePerturbationToolkit/Punctures'
+url: 'https://bhptoolkit.org/Punctures'
+abstract: Puncture fields from self-force theory
+license: MIT
