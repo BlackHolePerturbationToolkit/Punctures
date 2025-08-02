@@ -33,6 +33,8 @@ identifiers:
   - type: other
     value: 'arXiv:2508.XXXXX'
     description: ArXiv preprint of the paper
+  - type: article
+    value: 'Phys. Rev. D 89, 104020 (2014)'
 repository-code: 'https://github.com/BlackHolePerturbationToolkit/Punctures'
 url: 'https://bhptoolkit.org/Punctures'
 abstract: Puncture fields from self-force theory
