@@ -1,0 +1,2 @@
+# Detect .m files as Mathematica
+*.m linguist-language=Mathematica
