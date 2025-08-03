@@ -1,0 +1,2265 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    113712,       2255]
+NotebookOptionsPosition[    112519,       2228]
+NotebookOutlinePosition[    112938,       2245]
+CellTagsIndexPosition[    112895,       2242]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", "Print", "}"}], ",", 
+    RowBox[{"<<", "Metrics`LoadMetric`"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.925817041168995*^9, 3.925817046740241*^9}, {
+  3.925817090535799*^9, 
+  3.925817096188384*^9}},ExpressionUUID->"cb8f02f0-6b6a-4579-83f2-\
+fbdb49da119d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$DefInfoQ", "=", "False"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"$CVVerbose", "=", "False"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.925817060475997*^9, 3.92581707121564*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"e5481aa1-54c2-48c9-b2bc-6dde73d84f4d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LoadMetric", "[", "\"\<Schwarzschild\>\"", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.9258170476158743`*^9, 3.9258170556612577`*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"0c173d76-dc4a-44f9-9fba-ae50cd702f7f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MetricCompute", "[", 
+   RowBox[{"g", ",", "Schwarzschild", ",", "All"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.9258170746389093`*^9, 3.925817084166147*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"0c16406e-0416-4cee-b103-1f2e80aa2294"],
+
+Cell[BoxData[
+ RowBox[{"DefTensor", "[", 
+  RowBox[{
+   RowBox[{"H", "[", 
+    RowBox[{
+     RowBox[{"-", "a"}], ",", 
+     RowBox[{"-", "b"}]}], "]"}], ",", "TangentSchwarzschildM", ",", 
+   RowBox[{"Symmetric", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "a"}], ",", 
+      RowBox[{"-", "b"}]}], "}"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.925817088041012*^9, 3.9258171180295477`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"75223f55-3639-4398-a4c2-cfb8bc63b7e6"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SymmetrizedArray", "[", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"ToValues", "[", 
+       RowBox[{"ComponentArray", "[", 
+        RowBox[{"TraceBasisDummy", "[", 
+         RowBox[{"FixedPoint", "[", 
+          RowBox[{
+           RowBox[{"ToBasis", "[", "Schwarzschild", "]"}], ",", 
+           RowBox[{
+            RowBox[{"CD", "[", 
+             RowBox[{"-", "c"}], "]"}], "[", 
+            RowBox[{"H", "[", 
+             RowBox[{
+              RowBox[{"-", "a"}], ",", 
+              RowBox[{"-", "b"}]}], "]"}], "]"}]}], "]"}], "]"}], "]"}], 
+       "]"}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"r", "[", "]"}], "->", "r0"}], ",", 
+        RowBox[{
+         RowBox[{"\[Theta]", "[", "]"}], "->", 
+         RowBox[{"\[Pi]", "/", "2"}]}]}], "}"}]}], "/.", 
+     RowBox[{
+      RowBox[{"x", ":", 
+       RowBox[{"H", "[", "__", "]"}]}], ":>", 
+      RowBox[{"ToCanonical", "[", "x", "]"}]}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"CD", "[", 
+         RowBox[{"{", 
+          RowBox[{"k_", ",", 
+           RowBox[{"-", "Schwarzschild"}]}], "}"}], "]"}], "[", 
+        RowBox[{"H", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"i_", ",", 
+            RowBox[{"-", "Schwarzschild"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"j_", ",", 
+            RowBox[{"-", "Schwarzschild"}]}], "}"}]}], "]"}], "]"}], ":>", 
+       RowBox[{"HoldForm", "[", 
+        RowBox[{"dhRData", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "j", ",", "k"}], "]"}], "]"}], "]"}]}], ",", 
+      RowBox[{
+       RowBox[{"H", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i_", ",", 
+           RowBox[{"-", "Schwarzschild"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"j_", ",", 
+           RowBox[{"-", "Schwarzschild"}]}], "}"}]}], "]"}], ":>", 
+       RowBox[{"HoldForm", "[", 
+        RowBox[{"hRData", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "j"}], "]"}], "]"}], "]"}]}]}], "}"}]}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.925817120426009*^9, 3.925817315888769*^9}, {
+  3.925817346115296*^9, 3.925817375501268*^9}},
+ CellLabel->"In[20]:=",ExpressionUUID->"dea264c8-f203-4687-a75e-3ef9713f911e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["SymmetrizedArray",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"], 
+               ImageSizeCache -> {11., {0., 11.}}], Appearance -> None, 
+              BaseStyle -> {}, ButtonFunction :> (Typeset`open$$ = True), 
+              Evaluator -> Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[
+             
+             RasterBox[{{4, 3, 3, 2}, {3, 0, 3, 3}, {3, 0, 0, 3}, {1, 3, 3, 
+              4}}, {{0, 0}, {4, 4}}, {0, 5}], AspectRatio -> 1, Axes -> False,
+              Frame -> None, FrameStyle -> Directive[
+               Opacity[0.5], 
+               Thickness[Tiny], 
+               RGBColor[0.368417, 0.506779, 0.709798]], FrameTicks -> None, 
+             ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"{", 
+                    RowBox[{"4", ",", "4", ",", "4"}], "}"}], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Symmetry: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"Symmetric", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "2"}], "}"}], "]"}], "SummaryItem"]}]}},
+              AutoDelete -> False, 
+             BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], True -> 
+        GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"], 
+               ImageSizeCache -> {11., {0., 11.}}], Appearance -> None, 
+              BaseStyle -> {}, ButtonFunction :> (Typeset`open$$ = False), 
+              Evaluator -> Automatic, Method -> "Preemptive"], 
+             Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[
+             
+             RasterBox[{{4, 3, 3, 2}, {3, 0, 3, 3}, {3, 0, 0, 3}, {1, 3, 3, 
+              4}}, {{0, 0}, {4, 4}}, {0, 5}], AspectRatio -> 1, Axes -> False,
+              Frame -> None, FrameStyle -> Directive[
+               Opacity[0.5], 
+               Thickness[Tiny], 
+               RGBColor[0.368417, 0.506779, 0.709798]], FrameTicks -> None, 
+             ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"{", 
+                    RowBox[{"4", ",", "4", ",", "4"}], "}"}], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Symmetry: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"Symmetric", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "2"}], "}"}], "]"}], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Symmetry order: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["2", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                 "\"Specified independent elements: \"", 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox["40", "SummaryItem"]}]}, {
+               TagBox[
+                TagBox[
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1", ",", "1"}], "}"}], "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox[
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    "M", ShowAutoStyles -> False, AutoSpacing -> 
+                    False], $CellContext`M, Editable -> False], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    "M", ShowAutoStyles -> False, AutoSpacing -> 
+                    False], $CellContext`M, Editable -> False]}], "+", "r0"}],
+                     ")"}], " ", 
+                    TagBox[
+                    RowBox[{"hRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "2"}], "\[RightDoubleBracket]"}], 
+                    HoldForm]}], 
+                    SuperscriptBox["r0", "3"]]}], "+", 
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "1"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], BaselinePosition -> 
+                    Baseline, ContentPadding -> False, FrameMargins -> 0, 
+                    ImageSize -> {{1, 300}, Automatic}, StripOnInput -> True],
+                     LineBreakWithin -> False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1", ",", "2"}], "}"}], "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    RowBox[{
+                    FractionBox[
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    "M", ShowAutoStyles -> False, AutoSpacing -> 
+                    False], $CellContext`M, Editable -> False], " ", 
+                    TagBox[
+                    RowBox[{"hRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1"}], "\[RightDoubleBracket]"}], 
+                    HoldForm]}], 
+                    RowBox[{
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    "M", ShowAutoStyles -> False, AutoSpacing -> 
+                    False], $CellContext`M, Editable -> False], " ", "r0"}], 
+                    "-", 
+                    SuperscriptBox["r0", "2"]}]], "+", 
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "2"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], BaselinePosition -> 
+                    Baseline, ContentPadding -> False, FrameMargins -> 0, 
+                    ImageSize -> {{1, 300}, Automatic}, StripOnInput -> True],
+                     LineBreakWithin -> False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1", ",", "3"}], "}"}], "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "3"}], 
+                    "\[RightDoubleBracket]"}], HoldForm], BaselinePosition -> 
+                    Baseline, ContentPadding -> False, FrameMargins -> 0, 
+                    ImageSize -> {{1, 300}, Automatic}, StripOnInput -> True],
+                     LineBreakWithin -> False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1", ",", "4"}], "}"}], "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "4"}], 
+                    "\[RightDoubleBracket]"}], HoldForm], BaselinePosition -> 
+                    Baseline, ContentPadding -> False, FrameMargins -> 0, 
+                    ImageSize -> {{1, 300}, Automatic}, StripOnInput -> True],
+                     LineBreakWithin -> False]}]}, {
+                    ItemBox[
+                    "\"\[VerticalEllipsis]\"", Alignment -> Center, 
+                    StripOnInput -> False]}}, DefaultBaseStyle -> "Column", 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+                 "Column"], "SummaryItem"]}}, AutoDelete -> False, 
+             BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {
+              "Columns" -> {{2}}, "Rows" -> {{Automatic}}}]}}, AutoDelete -> 
+          False, BaselinePosition -> {1, 1}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  SymmetrizedArray[
+   StructuredArray`StructuredData[{4, 4, 
+    4}, {{{1, 1, 
+       1} -> (-2) $CellContext`M $CellContext`r0^(-3) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 1, 2]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 1, 1]], {1, 1, 2} -> 
+      2 $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 1, 1]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 1, 2]], {1, 1, 3} -> HoldForm[
+        Part[$CellContext`dhRData, 1, 1, 3]], {1, 1, 4} -> HoldForm[
+        Part[$CellContext`dhRData, 1, 1, 4]], {1, 2, 
+       1} -> $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 1, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`hRData, 2, 2]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 2, 1]], {1, 2, 2} -> HoldForm[
+        Part[$CellContext`dhRData, 1, 2, 2]], {1, 2, 
+       3} -> -$CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 1, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 2, 3]], {1, 2, 
+       4} -> -$CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 1, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 2, 4]], {1, 3, 
+       1} -> $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 3, 1]], {1, 3, 
+       2} -> ($CellContext`M - $CellContext`r0) $CellContext`r0^(-1) ((-2) \
+$CellContext`M + $CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`hRData, 1, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 3, 2]], {1, 3, 
+       3} -> ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 1, 2]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 3, 3]], {1, 3, 4} -> HoldForm[
+        Part[$CellContext`dhRData, 1, 3, 4]], {1, 4, 
+       1} -> $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 4, 1]], {1, 4, 
+       2} -> ($CellContext`M - $CellContext`r0) $CellContext`r0^(-1) ((-2) \
+$CellContext`M + $CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`hRData, 1, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 4, 2]], {1, 4, 3} -> HoldForm[
+        Part[$CellContext`dhRData, 1, 4, 3]], {1, 4, 
+       4} -> ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 1, 2]] + HoldForm[
+         Part[$CellContext`dhRData, 1, 4, 4]], {2, 2, 1} -> 
+      2 $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 1, 2]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 2, 1]], {2, 2, 
+       2} -> (-2) $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 2, 2]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 2, 2]], {2, 2, 
+       3} -> (-2) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 2, 3]], {2, 2, 
+       4} -> (-2) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 2, 4]], {2, 3, 
+       1} -> $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 1, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 3, 1]], {2, 3, 
+       2} -> -$CellContext`r0^(-1) ((-3) $CellContext`M + $CellContext`r0) \
+((-2) $CellContext`M + $CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 3, 2]], {2, 3, 
+       3} -> ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 2]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`hRData, 3, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 3, 3]], {2, 3, 
+       4} -> -$CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 3, 4]], {2, 4, 
+       1} -> $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 1, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 4, 1]], {2, 4, 
+       2} -> -$CellContext`r0^(-1) ((-3) $CellContext`M + $CellContext`r0) \
+((-2) $CellContext`M + $CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 4, 2]], {2, 4, 
+       3} -> -$CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 4, 3]], {2, 4, 
+       4} -> ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 2]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`hRData, 4, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 2, 4, 4]], {3, 3, 1} -> HoldForm[
+        Part[$CellContext`dhRData, 3, 3, 1]], {3, 3, 
+       2} -> (-2) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 3, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 3, 3, 2]], {3, 3, 
+       3} -> ((-4) $CellContext`M + 2 $CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 3, 3, 3]], {3, 3, 4} -> HoldForm[
+        Part[$CellContext`dhRData, 3, 3, 4]], {3, 4, 1} -> HoldForm[
+        Part[$CellContext`dhRData, 3, 4, 1]], {3, 4, 
+       2} -> (-2) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 2]], {3, 4, 
+       3} -> ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 3]], {3, 4, 
+       4} -> ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] + HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 4]], {4, 4, 1} -> HoldForm[
+        Part[$CellContext`dhRData, 4, 4, 1]], {4, 4, 
+       2} -> (-2) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 4, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 4, 4, 2]], {4, 4, 3} -> HoldForm[
+        Part[$CellContext`dhRData, 4, 4, 3]], {4, 4, 
+       4} -> ((-4) $CellContext`M + 2 $CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] + HoldForm[
+         Part[$CellContext`dhRData, 4, 4, 4]]}, 
+     Symmetric[{1, 2}]}]],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{{3.925817133748704*^9, 3.925817207556717*^9}, {
+  3.925817262669311*^9, 3.92581728388328*^9}, {3.925817333782042*^9, 
+  3.925817376123003*^9}},
+ CellLabel->"Out[20]=",ExpressionUUID->"becb2e7f-cf88-4117-8803-09f8c8f82512"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SymmetrizedArray", "[", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"ToValues", "[", 
+       RowBox[{"ComponentArray", "[", 
+        RowBox[{"TraceBasisDummy", "[", 
+         RowBox[{"FixedPoint", "[", 
+          RowBox[{
+           RowBox[{"ToBasis", "[", "Schwarzschild", "]"}], ",", 
+           RowBox[{
+            RowBox[{"CD", "[", 
+             RowBox[{"-", "d"}], "]"}], "[", 
+            RowBox[{
+             RowBox[{"CD", "[", 
+              RowBox[{"-", "c"}], "]"}], "[", 
+             RowBox[{"H", "[", 
+              RowBox[{
+               RowBox[{"-", "a"}], ",", 
+               RowBox[{"-", "b"}]}], "]"}], "]"}], "]"}]}], "]"}], "]"}], 
+        "]"}], "]"}], "/.", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"r", "[", "]"}], "->", "r0"}], ",", 
+        RowBox[{
+         RowBox[{"\[Theta]", "[", "]"}], "->", 
+         RowBox[{"\[Pi]", "/", "2"}]}]}], "}"}]}], "/.", 
+     RowBox[{
+      RowBox[{"x", ":", 
+       RowBox[{"H", "[", "__", "]"}]}], ":>", 
+      RowBox[{"ToCanonical", "[", "x", "]"}]}]}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"CD", "[", 
+         RowBox[{"{", 
+          RowBox[{"l_", ",", 
+           RowBox[{"-", "Schwarzschild"}]}], "}"}], "]"}], "[", 
+        RowBox[{
+         RowBox[{"CD", "[", 
+          RowBox[{"{", 
+           RowBox[{"k_", ",", 
+            RowBox[{"-", "Schwarzschild"}]}], "}"}], "]"}], "[", 
+         RowBox[{"H", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"i_", ",", 
+             RowBox[{"-", "Schwarzschild"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"j_", ",", 
+             RowBox[{"-", "Schwarzschild"}]}], "}"}]}], "]"}], "]"}], "]"}], ":>", 
+       RowBox[{"HoldForm", "[", 
+        RowBox[{"d2hRData", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "j", ",", "k", ",", "l"}], "]"}], "]"}], "]"}]}], 
+      ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"CD", "[", 
+         RowBox[{"{", 
+          RowBox[{"k_", ",", 
+           RowBox[{"-", "Schwarzschild"}]}], "}"}], "]"}], "[", 
+        RowBox[{"H", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"i_", ",", 
+            RowBox[{"-", "Schwarzschild"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"j_", ",", 
+            RowBox[{"-", "Schwarzschild"}]}], "}"}]}], "]"}], "]"}], ":>", 
+       RowBox[{"HoldForm", "[", 
+        RowBox[{"dhRData", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "j", ",", "k"}], "]"}], "]"}], "]"}]}], ",", 
+      RowBox[{
+       RowBox[{"H", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i_", ",", 
+           RowBox[{"-", "Schwarzschild"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"j_", ",", 
+           RowBox[{"-", "Schwarzschild"}]}], "}"}]}], "]"}], ":>", 
+       RowBox[{"HoldForm", "[", 
+        RowBox[{"hRData", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", ",", "j"}], "]"}], "]"}], "]"}]}]}], "}"}]}], "]"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.925817120426009*^9, 3.925817315888769*^9}, {
+  3.925817346115296*^9, 3.925817483196371*^9}},
+ CellLabel->"In[22]:=",ExpressionUUID->"fd89dc24-a8df-47a6-9d4b-281f51574ed4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["SymmetrizedArray",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"]], 
+              ButtonFunction :> (Typeset`open$$ = True), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[
+             
+             RasterBox[{{4, 3, 3, 2}, {3, 0, 3, 3}, {3, 0, 0, 3}, {1, 3, 3, 
+              4}}, {{0, 0}, {4, 4}}, {0, 5}], AspectRatio -> 1, Axes -> False,
+              Frame -> None, Axes -> False, AspectRatio -> 1, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}], Frame -> True, FrameTicks -> None, 
+             FrameStyle -> Directive[
+               Opacity[0.5], 
+               Thickness[Tiny], 
+               RGBColor[0.368417, 0.506779, 0.709798]], ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"{", 
+                    RowBox[{"4", ",", "4", ",", "4", ",", "4"}], "}"}], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Symmetry: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"Symmetric", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "2"}], "}"}], "]"}], "SummaryItem"]}]}},
+              GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"]], 
+              ButtonFunction :> (Typeset`open$$ = False), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GraphicsBox[
+             
+             RasterBox[{{4, 3, 3, 2}, {3, 0, 3, 3}, {3, 0, 0, 3}, {1, 3, 3, 
+              4}}, {{0, 0}, {4, 4}}, {0, 5}], AspectRatio -> 1, Axes -> False,
+              Frame -> None, Axes -> False, AspectRatio -> 1, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}], Frame -> True, FrameTicks -> None, 
+             FrameStyle -> Directive[
+               Opacity[0.5], 
+               Thickness[Tiny], 
+               RGBColor[0.368417, 0.506779, 0.709798]], ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            GridBox[{{
+               RowBox[{
+                 TagBox["\"Dimensions: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"{", 
+                    RowBox[{"4", ",", "4", ",", "4", ",", "4"}], "}"}], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Symmetry: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"Symmetric", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "2"}], "}"}], "]"}], "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox["\"Symmetry order: \"", "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["2", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                 "\"Specified independent elements: \"", 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox["160", "SummaryItem"]}]}, {
+               TagBox[
+                TagBox[
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "1"}], "}"}], 
+                    "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    FractionBox[
+                    RowBox[{
+                    RowBox[{"4", " ", 
+                    SuperscriptBox[
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], "2"], " ", 
+                    SuperscriptBox["r0", "2"], " ", 
+                    TagBox[
+                    RowBox[{"hRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1"}], "\[RightDoubleBracket]"}], 
+                    HoldForm]}], "+", 
+                    RowBox[{"2", " ", 
+                    SuperscriptBox[
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], "2"], " ", 
+                    SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False]}], "+", "r0"}],
+                     ")"}], "2"], " ", 
+                    TagBox[
+                    RowBox[{"hRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"2", ",", "2"}], "\[RightDoubleBracket]"}], 
+                    HoldForm]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["r0", "3"], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False]}], "-", "r0"}],
+                     ")"}], " ", 
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "2"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], "+", 
+                    RowBox[{"4", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False]}], "-", "r0"}],
+                     ")"}], " ", 
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "2", ",", "1"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["r0", "3"], " ", 
+                    TagBox[
+                    RowBox[{"d2hRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "1"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}]}], ")"}]}]}], 
+                    SuperscriptBox["r0", "6"]], ContentPadding -> False, 
+                    FrameMargins -> 0, StripOnInput -> True, BaselinePosition -> 
+                    Baseline, ImageSize -> {{1, 300}, Automatic}], 
+                    LineBreakWithin -> False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "2"}], "}"}], 
+                    "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    FractionBox[
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"6", " ", 
+                    SuperscriptBox[
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], "2"]}], "-", 
+                    RowBox[{"7", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], " ", "r0"}], 
+                    "+", 
+                    RowBox[{"2", " ", 
+                    SuperscriptBox["r0", "2"]}]}], ")"}], " ", 
+                    TagBox[
+                    RowBox[{"hRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "2"}], "\[RightDoubleBracket]"}], 
+                    HoldForm]}], "+", 
+                    RowBox[{"3", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], " ", 
+                    SuperscriptBox["r0", "3"], " ", 
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "1"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False]}], "-", "r0"}],
+                     ")"}], " ", "r0", " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False]}], "-", "r0"}],
+                     ")"}], " ", 
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "2", ",", "2"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], "+", 
+                    RowBox[{
+                    SuperscriptBox["r0", "3"], " ", 
+                    TagBox[
+                    RowBox[{"d2hRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "2"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}]}], ")"}]}]}], 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False]}], "-", "r0"}],
+                     ")"}], " ", 
+                    SuperscriptBox["r0", "4"]}]], ContentPadding -> False, 
+                    FrameMargins -> 0, StripOnInput -> True, BaselinePosition -> 
+                    Baseline, ImageSize -> {{1, 300}, Automatic}], 
+                    LineBreakWithin -> False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "3"}], "}"}], 
+                    "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox[
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False]}], "+", "r0"}],
+                     ")"}], " ", 
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "2", ",", "3"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], 
+                    SuperscriptBox["r0", "3"]]}], "+", 
+                    TagBox[
+                    RowBox[{"d2hRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "3"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], ContentPadding -> 
+                    False, FrameMargins -> 0, StripOnInput -> True, 
+                    BaselinePosition -> Baseline, 
+                    ImageSize -> {{1, 300}, Automatic}], LineBreakWithin -> 
+                    False]}]}, {
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "4"}], "}"}], 
+                    "\[Rule]", 
+                    StyleBox[
+                    PaneBox[
+                    RowBox[{
+                    RowBox[{"-", 
+                    FractionBox[
+                    RowBox[{"2", " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    InterpretationBox[
+                    StyleBox[
+                    RowBox[{"M"}], AutoSpacing -> False, ShowAutoStyles -> 
+                    False], $CellContext`M, Editable -> False]}], "+", "r0"}],
+                     ")"}], " ", 
+                    TagBox[
+                    RowBox[{"dhRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "2", ",", "4"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], 
+                    SuperscriptBox["r0", "3"]]}], "+", 
+                    TagBox[
+                    RowBox[{"d2hRData", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "1", ",", "1", ",", "4"}], 
+                    "\[RightDoubleBracket]"}], HoldForm]}], ContentPadding -> 
+                    False, FrameMargins -> 0, StripOnInput -> True, 
+                    BaselinePosition -> Baseline, 
+                    ImageSize -> {{1, 300}, Automatic}], LineBreakWithin -> 
+                    False]}]}, {
+                    ItemBox[
+                    "\"\[VerticalEllipsis]\"", Alignment -> Center, 
+                    StripOnInput -> False]}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
+                 "Column"], "SummaryItem"]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  SymmetrizedArray[
+   StructuredArray`StructuredData[{4, 4, 4, 
+    4}, {{{1, 1, 1, 
+       1} -> $CellContext`r0^(-6) (
+        4 $CellContext`M^2 $CellContext`r0^2 HoldForm[
+           Part[$CellContext`hRData, 1, 1]] + 
+        2 $CellContext`M^2 ((-2) $CellContext`M + $CellContext`r0)^2 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            2]] + $CellContext`r0^3 ($CellContext`M (
+            2 $CellContext`M - $CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 1, 1, 2]] + 
+          4 $CellContext`M (2 $CellContext`M - $CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 1, 2, 1]] + $CellContext`r0^3 HoldForm[
+             Part[$CellContext`d2hRData, 1, 1, 1, 1]])), {1, 1, 1, 
+       2} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-4) \
+((-2) $CellContext`M (6 $CellContext`M^2 - 7 $CellContext`M $CellContext`r0 + 
+          2 $CellContext`r0^2) HoldForm[
+           Part[$CellContext`hRData, 1, 2]] + 
+        3 $CellContext`M $CellContext`r0^3 HoldForm[
+           Part[$CellContext`dhRData, 1, 1, 1]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (
+          2 $CellContext`M (2 $CellContext`M - $CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 1, 2, 2]] + $CellContext`r0^3 HoldForm[
+             Part[$CellContext`d2hRData, 1, 1, 1, 2]])), {1, 1, 1, 
+       3} -> (-2) $CellContext`M $CellContext`r0^(-3) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 1, 3]], {1, 1, 1, 
+       4} -> (-2) $CellContext`M $CellContext`r0^(-3) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 1, 4]], {1, 1, 2, 1} -> 
+      2 $CellContext`M^2 $CellContext`r0^(-4) HoldForm[
+          Part[$CellContext`hRData, 1, 2]] + 
+       3 $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 1]] - 
+       2 $CellContext`M $CellContext`r0^(-3) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+         Part[$CellContext`dhRData, 1, 2, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 2, 1]], {1, 1, 2, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) ((-2) $CellContext`M ($CellContext`M - 
+          2 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 1]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (
+          3 $CellContext`M HoldForm[
+             Part[$CellContext`dhRData, 1, 1, 2]] + (
+            2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 1, 1, 2, 2]])), {1, 1, 2, 
+       3} -> (2 $CellContext`M - $CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 2, 3]], {1, 1, 2, 
+       4} -> (2 $CellContext`M - $CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 2, 4]], {1, 1, 3, 1} -> 
+      2 $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 1, 3]] - 
+       2 $CellContext`M $CellContext`r0^(-3) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+         Part[$CellContext`dhRData, 1, 2, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 3, 1]], {1, 1, 3, 
+       2} -> (2 $CellContext`M - $CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 3, 2]], {1, 1, 3, 
+       3} -> (-2) $CellContext`M $CellContext`r0^(-1) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           1]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 3, 3]], {1, 1, 3, 4} -> HoldForm[
+        Part[$CellContext`d2hRData, 1, 1, 3, 4]], {1, 1, 4, 1} -> 
+      2 $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 1, 4]] - 
+       2 $CellContext`M $CellContext`r0^(-3) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+         Part[$CellContext`dhRData, 1, 2, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 4, 1]], {1, 1, 4, 
+       2} -> (2 $CellContext`M - $CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 4, 2]], {1, 1, 4, 3} -> HoldForm[
+        Part[$CellContext`d2hRData, 1, 1, 4, 3]], {1, 1, 4, 
+       4} -> (-2) $CellContext`M $CellContext`r0^(-1) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           1]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 1, 4, 4]], {1, 2, 1, 
+       1} -> $CellContext`r0^(-4) (4 $CellContext`M^2 HoldForm[
+           Part[$CellContext`hRData, 1, 2]] + 
+        2 $CellContext`M (
+           2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^3 HoldForm[
+           Part[$CellContext`dhRData, 1, 1, 1]] + $CellContext`M (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 1, 2, 2]] + 
+        2 $CellContext`M (2 $CellContext`M - $CellContext`r0) $CellContext`r0 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 2, 1]] + $CellContext`r0^4 HoldForm[
+           Part[$CellContext`d2hRData, 1, 2, 1, 1]]), {1, 2, 1, 
+       2} -> $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) (-$CellContext`M ($CellContext`M - 
+          2 $CellContext`r0) $CellContext`r0^2 HoldForm[
+           Part[$CellContext`hRData, 1, 1]] + (
+          2 $CellContext`M - $CellContext`r0) ($CellContext`M ((-10) \
+$CellContext`M^2 + 9 $CellContext`M $CellContext`r0 - 2 $CellContext`r0^2) 
+           HoldForm[
+             
+             Part[$CellContext`hRData, 2, 
+              2]] + $CellContext`M $CellContext`r0^3 HoldForm[
+             
+             Part[$CellContext`dhRData, 1, 1, 
+              2]] + $CellContext`M $CellContext`r0^3 HoldForm[
+             Part[$CellContext`dhRData, 1, 2, 1]] + (
+            2 $CellContext`M - $CellContext`r0) $CellContext`r0 \
+($CellContext`M (2 $CellContext`M - $CellContext`r0) HoldForm[
+               Part[$CellContext`dhRData, 2, 2, 2]] + $CellContext`r0^3 
+             HoldForm[
+               Part[$CellContext`d2hRData, 1, 2, 1, 2]]))), {1, 2, 1, 
+       3} -> $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] + $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 3]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 1, 3, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 2, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 2, 1, 3]], {1, 2, 1, 
+       4} -> $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] + $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 4]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 1, 4, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 2, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 2, 1, 4]], {1, 2, 2, 
+       1} -> $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) (3 $CellContext`M^2 $CellContext`r0^2 HoldForm[
+           Part[$CellContext`hRData, 1, 1]] + (
+          2 $CellContext`M - $CellContext`r0) ($CellContext`M^2 ((-2) \
+$CellContext`M + $CellContext`r0) HoldForm[
+             
+             Part[$CellContext`hRData, 2, 
+              2]] + $CellContext`M $CellContext`r0^3 HoldForm[
+             
+             Part[$CellContext`dhRData, 1, 1, 
+              2]] + $CellContext`M $CellContext`r0^3 HoldForm[
+             Part[$CellContext`dhRData, 1, 2, 1]] + (
+            2 $CellContext`M - $CellContext`r0) $CellContext`r0 \
+($CellContext`M (2 $CellContext`M - $CellContext`r0) HoldForm[
+               Part[$CellContext`dhRData, 2, 2, 2]] + $CellContext`r0^3 
+             HoldForm[
+               Part[$CellContext`d2hRData, 1, 2, 2, 1]]))), {1, 2, 2, 
+       2} -> -$CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 2, 2, 2]], {1, 2, 2, 
+       3} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-3) $CellContext`M + 2 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 3]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (HoldForm[
+            Part[$CellContext`dhRData, 1, 2, 3]] + HoldForm[
+            Part[$CellContext`dhRData, 1, 3, 2]] - $CellContext`r0 HoldForm[
+            Part[$CellContext`d2hRData, 1, 2, 2, 3]])), {1, 2, 2, 
+       4} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-3) $CellContext`M + 2 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 4]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (HoldForm[
+            Part[$CellContext`dhRData, 1, 2, 4]] + HoldForm[
+            Part[$CellContext`dhRData, 1, 4, 2]] - $CellContext`r0 HoldForm[
+            Part[$CellContext`d2hRData, 1, 2, 2, 4]])), {1, 2, 3, 1} -> 
+      2 $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] + $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 3]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 1, 3, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 2, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 2, 3, 1]], {1, 2, 3, 
+       2} -> $CellContext`r0^(-2) (2 HoldForm[
+           Part[$CellContext`hRData, 1, 3]] + $CellContext`r0 (-HoldForm[
+             Part[$CellContext`dhRData, 1, 2, 3]] - HoldForm[
+           Part[$CellContext`dhRData, 1, 3, 2]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 1, 2, 3, 2]])), {1, 2, 3, 
+       3} -> $CellContext`r0^(-1) ((2 $CellContext`M - $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 1, 
+            2]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 1, 2, 2]] - 2 HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 1, 2, 3, 3]]), {1, 2, 3, 
+       4} -> -$CellContext`r0^(-1) (HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 4]] + HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 3]] - $CellContext`r0 HoldForm[
+          Part[$CellContext`d2hRData, 1, 2, 3, 4]]), {1, 2, 4, 1} -> 
+      2 $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] + $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 1, 4]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 1, 4, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 2, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 2, 4, 1]], {1, 2, 4, 
+       2} -> $CellContext`r0^(-2) (2 HoldForm[
+           Part[$CellContext`hRData, 1, 4]] + $CellContext`r0 (-HoldForm[
+             Part[$CellContext`dhRData, 1, 2, 4]] - HoldForm[
+           Part[$CellContext`dhRData, 1, 4, 2]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 1, 2, 4, 2]])), {1, 2, 4, 
+       3} -> -$CellContext`r0^(-1) (HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 4]] + HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 3]] - $CellContext`r0 HoldForm[
+          Part[$CellContext`d2hRData, 1, 2, 4, 3]]), {1, 2, 4, 
+       4} -> $CellContext`r0^(-1) ((2 $CellContext`M - $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 1, 
+            2]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 1, 2, 2]] - 2 HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 4]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 1, 2, 4, 4]]), {1, 3, 1, 
+       1} -> $CellContext`r0^(-3) ($CellContext`M HoldForm[
+           Part[$CellContext`hRData, 1, 3]] + $CellContext`M (
+          2 $CellContext`M - $CellContext`r0) HoldForm[
+           Part[$CellContext`dhRData, 1, 3, 2]] + 
+        4 $CellContext`M^2 HoldForm[
+           Part[$CellContext`dhRData, 2, 3, 1]] - 
+        2 $CellContext`M $CellContext`r0 HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 1]] + $CellContext`r0^3 HoldForm[
+           Part[$CellContext`d2hRData, 1, 3, 1, 1]]), {1, 3, 1, 
+       2} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-4) \
+((-3) $CellContext`M ((-2) $CellContext`M + $CellContext`r0)^2 HoldForm[
+           Part[$CellContext`hRData, 2, 3]] + $CellContext`r0^4 HoldForm[
+           Part[$CellContext`dhRData, 1, 3, 1]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 ($CellContext`M \
+(2 $CellContext`M - $CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 2, 3, 2]] + $CellContext`r0^3 HoldForm[
+             Part[$CellContext`d2hRData, 1, 3, 1, 2]])), {1, 3, 1, 
+       3} -> $CellContext`r0^(-3) (-$CellContext`M $CellContext`r0^2 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 1, 
+            1]] - $CellContext`M ((-2) $CellContext`M + $CellContext`r0)^2 
+        HoldForm[
+          Part[$CellContext`hRData, 2, 2]] - 
+        2 $CellContext`M $CellContext`r0^3 HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 1]] + $CellContext`r0^4 HoldForm[
+           Part[$CellContext`dhRData, 1, 2, 1]] + 
+        2 $CellContext`M^2 HoldForm[
+           
+           Part[$CellContext`dhRData, 2, 3, 
+            3]] - $CellContext`M $CellContext`r0 HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 3]] + $CellContext`r0^3 HoldForm[
+           Part[$CellContext`d2hRData, 1, 3, 1, 3]]), {1, 3, 1, 
+       4} -> $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 1, 4]], {1, 3, 2, 
+       1} -> $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 1, 3, 1]] + 
+       2 $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 2, 1]], {1, 3, 2, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) ((4 $CellContext`M^2 - 5 $CellContext`M $CellContext`r0 + 
+          2 $CellContext`r0^2) HoldForm[
+           Part[$CellContext`hRData, 1, 3]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (((-3) \
+$CellContext`M + 2 $CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 1, 3, 2]] + (
+            2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 1, 3, 2, 2]])), {1, 3, 2, 
+       3} -> (-1 + 2 $CellContext`M/$CellContext`r0) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           2]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 2]] - 2 $CellContext`r0^(-1) 
+       HoldForm[
+         Part[$CellContext`dhRData, 1, 3, 3]] + $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 2, 3]], {1, 3, 2, 
+       4} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 2, 4]], {1, 3, 3, 
+       1} -> -$CellContext`M $CellContext`r0^(-3) ((-2) $CellContext`M + \
+$CellContext`r0)^2 HoldForm[
+          
+          Part[$CellContext`hRData, 2, 
+           2]] + $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          
+          Part[$CellContext`hRData, 3, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 3, 1]], {1, 3, 3, 
+       2} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-1) ((
+          6 $CellContext`M^2 - 
+          5 $CellContext`M $CellContext`r0 + $CellContext`r0^2) HoldForm[
+           
+           Part[$CellContext`hRData, 1, 
+            2]] - $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0)^2 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 2]] - 3 $CellContext`M HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 3]] + 2 $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 1, 3, 3]] + 
+        2 $CellContext`M $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 1, 3, 3, 2]] - $CellContext`r0^2 
+        HoldForm[
+          Part[$CellContext`d2hRData, 1, 3, 3, 2]]), {1, 3, 3, 
+       3} -> (3 $CellContext`M - 2 $CellContext`r0) $CellContext`r0^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 1, 3]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          
+          Part[$CellContext`dhRData, 1, 2, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 3, 3]], {1, 3, 3, 
+       4} -> ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 3, 4]], {1, 3, 4, 
+       1} -> $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 4, 1]], {1, 3, 4, 
+       2} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 4, 2]], {1, 3, 4, 3} -> 
+      2 $CellContext`M $CellContext`r0^(-1) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           4]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 4, 3]], {1, 3, 4, 
+       4} -> (-1 + $CellContext`M/$CellContext`r0) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 3, 4, 4]], {1, 4, 1, 
+       1} -> $CellContext`r0^(-3) ($CellContext`M HoldForm[
+           Part[$CellContext`hRData, 1, 4]] + $CellContext`M (
+          2 $CellContext`M - $CellContext`r0) HoldForm[
+           Part[$CellContext`dhRData, 1, 4, 2]] + 
+        4 $CellContext`M^2 HoldForm[
+           Part[$CellContext`dhRData, 2, 4, 1]] - 
+        2 $CellContext`M $CellContext`r0 HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 1]] + $CellContext`r0^3 HoldForm[
+           Part[$CellContext`d2hRData, 1, 4, 1, 1]]), {1, 4, 1, 
+       2} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-4) \
+((-3) $CellContext`M ((-2) $CellContext`M + $CellContext`r0)^2 HoldForm[
+           Part[$CellContext`hRData, 2, 4]] + $CellContext`r0^4 HoldForm[
+           Part[$CellContext`dhRData, 1, 4, 1]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 ($CellContext`M \
+(2 $CellContext`M - $CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 2, 4, 2]] + $CellContext`r0^3 HoldForm[
+             Part[$CellContext`d2hRData, 1, 4, 1, 2]])), {1, 4, 1, 
+       3} -> $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 1, 3]], {1, 4, 1, 
+       4} -> $CellContext`r0^(-3) (-$CellContext`M $CellContext`r0^2 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 1, 
+            1]] - $CellContext`M ((-2) $CellContext`M + $CellContext`r0)^2 
+        HoldForm[
+          Part[$CellContext`hRData, 2, 2]] - 
+        2 $CellContext`M $CellContext`r0^3 HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 1]] + $CellContext`r0^4 HoldForm[
+           Part[$CellContext`dhRData, 1, 2, 1]] + 
+        2 $CellContext`M^2 HoldForm[
+           
+           Part[$CellContext`dhRData, 2, 4, 
+            4]] - $CellContext`M $CellContext`r0 HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 4]] + $CellContext`r0^3 HoldForm[
+           Part[$CellContext`d2hRData, 1, 4, 1, 4]]), {1, 4, 2, 
+       1} -> $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 1, 4, 1]] + 
+       2 $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 2, 1]], {1, 4, 2, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) ((4 $CellContext`M^2 - 5 $CellContext`M $CellContext`r0 + 
+          2 $CellContext`r0^2) HoldForm[
+           Part[$CellContext`hRData, 1, 4]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (((-3) \
+$CellContext`M + 2 $CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 1, 4, 2]] + (
+            2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 1, 4, 2, 2]])), {1, 4, 2, 
+       3} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 2, 3]], {1, 4, 2, 
+       4} -> (-1 + 2 $CellContext`M/$CellContext`r0) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           2]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 2]] - 2 $CellContext`r0^(-1) 
+       HoldForm[
+         Part[$CellContext`dhRData, 1, 4, 4]] + $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 2, 4]], {1, 4, 3, 
+       1} -> $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 3, 1]], {1, 4, 3, 
+       2} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 3, 2]], {1, 4, 3, 
+       3} -> $CellContext`M $CellContext`r0^(-1) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           4]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 3, 3]], {1, 4, 3, 
+       4} -> (-1 + 2 $CellContext`M/$CellContext`r0) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 3, 4]], {1, 4, 4, 
+       1} -> -$CellContext`M $CellContext`r0^(-3) ((-2) $CellContext`M + \
+$CellContext`r0)^2 HoldForm[
+          
+          Part[$CellContext`hRData, 2, 
+           2]] + $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          
+          Part[$CellContext`hRData, 4, 
+           4]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 4, 1]], {1, 4, 4, 
+       2} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-1) ((
+          6 $CellContext`M^2 - 
+          5 $CellContext`M $CellContext`r0 + $CellContext`r0^2) HoldForm[
+           
+           Part[$CellContext`hRData, 1, 
+            2]] - $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0)^2 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 2]] - 3 $CellContext`M HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 4]] + 2 $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 1, 4, 4]] + 
+        2 $CellContext`M $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 1, 4, 4, 2]] - $CellContext`r0^2 
+        HoldForm[
+          Part[$CellContext`d2hRData, 1, 4, 4, 2]]), {1, 4, 4, 3} -> -HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 4, 3]], {1, 4, 4, 
+       4} -> (3 $CellContext`M - 2 $CellContext`r0) $CellContext`r0^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 1, 4]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          
+          Part[$CellContext`dhRData, 1, 2, 
+           4]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 1, 4, 4, 4]], {2, 2, 1, 1} -> 
+      2 $CellContext`M^2 $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) HoldForm[
+          Part[$CellContext`hRData, 1, 1]] + 
+       4 $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 2, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 2, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 2, 2, 1, 1]], {2, 2, 1, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) (((-6) $CellContext`M^2 + 
+          4 $CellContext`M $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 2]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (
+          2 $CellContext`M HoldForm[
+             Part[$CellContext`dhRData, 1, 2, 2]] - $CellContext`M HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 1]] + (
+            2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 1, 2]])), {2, 2, 1, 
+       3} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-2) \
+((-2) $CellContext`M HoldForm[
+           Part[$CellContext`hRData, 1, 3]] + 
+        2 $CellContext`M $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 1, 2, 3]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 ((-2) HoldForm[
+             Part[$CellContext`dhRData, 2, 3, 1]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 1, 3]])), {2, 2, 1, 
+       4} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-2) \
+((-2) $CellContext`M HoldForm[
+           Part[$CellContext`hRData, 1, 4]] + 
+        2 $CellContext`M $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 1, 2, 4]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 ((-2) HoldForm[
+             Part[$CellContext`dhRData, 2, 4, 1]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 1, 4]])), {2, 2, 2, 
+       1} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) (2 $CellContext`M^2 HoldForm[
+           Part[$CellContext`hRData, 1, 2]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (
+          2 $CellContext`M HoldForm[
+             Part[$CellContext`dhRData, 1, 2, 2]] - $CellContext`M HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 1]] + (
+            2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 2, 1]])), {2, 2, 2, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) (
+        2 $CellContext`M (5 $CellContext`M - 2 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 2, 2]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 ((-5) \
+$CellContext`M HoldForm[
+             Part[$CellContext`dhRData, 2, 2, 2]] + (
+            2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 2, 2]])), {2, 2, 2, 
+       3} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-10) $CellContext`M + 4 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 2, 3]] + (
+          4 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 2, 2, 3]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (2 HoldForm[
+             Part[$CellContext`dhRData, 2, 3, 2]] - $CellContext`r0 HoldForm[
+            Part[$CellContext`d2hRData, 2, 2, 2, 3]])), {2, 2, 2, 
+       4} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-10) $CellContext`M + 4 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 2, 4]] + (
+          4 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 2, 2, 4]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (2 HoldForm[
+             Part[$CellContext`dhRData, 2, 4, 2]] - $CellContext`r0 HoldForm[
+            Part[$CellContext`d2hRData, 2, 2, 2, 4]])), {2, 2, 3, 
+       1} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-2) \
+((-2) $CellContext`M HoldForm[
+           Part[$CellContext`hRData, 1, 3]] + 
+        2 $CellContext`M $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 1, 2, 3]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 ((-2) HoldForm[
+             Part[$CellContext`dhRData, 2, 3, 1]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 3, 1]])), {2, 2, 3, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (4 ((-3) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 2, 3]] + (
+          4 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 2, 2, 3]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (2 HoldForm[
+             Part[$CellContext`dhRData, 2, 3, 2]] - $CellContext`r0 HoldForm[
+            Part[$CellContext`d2hRData, 2, 2, 3, 2]])), {2, 2, 3, 
+       3} -> $CellContext`r0^(-2) (
+        2 (3 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+           Part[$CellContext`hRData, 2, 2]] + 2 HoldForm[
+           Part[$CellContext`hRData, 3, 
+            3]] + $CellContext`r0 ($CellContext`r0 ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 2, 2, 2]] - 4 HoldForm[
+            Part[$CellContext`dhRData, 2, 3, 3]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 3, 3]])), {2, 2, 3, 
+       4} -> $CellContext`r0^(-2) (2 HoldForm[
+           Part[$CellContext`hRData, 3, 4]] + $CellContext`r0 ((-2) HoldForm[
+             Part[$CellContext`dhRData, 2, 3, 4]] - 2 HoldForm[
+            Part[$CellContext`dhRData, 2, 4, 3]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 3, 4]])), {2, 2, 4, 
+       1} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-2) \
+((-2) $CellContext`M HoldForm[
+           Part[$CellContext`hRData, 1, 4]] + 
+        2 $CellContext`M $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 1, 2, 4]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 ((-2) HoldForm[
+             Part[$CellContext`dhRData, 2, 4, 1]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 4, 1]])), {2, 2, 4, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (4 ((-3) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 2, 4]] + (
+          4 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 2, 2, 4]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (2 HoldForm[
+             Part[$CellContext`dhRData, 2, 4, 2]] - $CellContext`r0 HoldForm[
+            Part[$CellContext`d2hRData, 2, 2, 4, 2]])), {2, 2, 4, 
+       3} -> $CellContext`r0^(-2) (2 HoldForm[
+           Part[$CellContext`hRData, 3, 4]] + $CellContext`r0 ((-2) HoldForm[
+             Part[$CellContext`dhRData, 2, 3, 4]] - 2 HoldForm[
+            Part[$CellContext`dhRData, 2, 4, 3]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 4, 3]])), {2, 2, 4, 
+       4} -> $CellContext`r0^(-2) (
+        2 (3 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+           Part[$CellContext`hRData, 2, 2]] + 2 HoldForm[
+           
+           Part[$CellContext`hRData, 4, 
+            4]] + $CellContext`r0 ($CellContext`r0 ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 2, 2, 2]] - 4 HoldForm[
+            Part[$CellContext`dhRData, 2, 4, 4]] + $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 2, 4, 4]])), {2, 3, 1, 
+       1} -> $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] + 
+       2 $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 2, 3, 1, 1]], {2, 3, 1, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) ($CellContext`M ((-4) $CellContext`M + 
+          3 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 3]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 ($CellContext`M 
+           HoldForm[
+             Part[$CellContext`dhRData, 1, 3, 2]] + (
+            2 $CellContext`M - $CellContext`r0) (-HoldForm[
+               Part[$CellContext`dhRData, 2, 3, 1]] + $CellContext`r0 HoldForm[
+               Part[$CellContext`d2hRData, 2, 3, 1, 2]]))), {2, 3, 1, 
+       3} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-1) (
+        2 $CellContext`M ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 2]] + $CellContext`M HoldForm[
+           Part[$CellContext`dhRData, 1, 3, 3]] - (
+         2 $CellContext`M - $CellContext`r0) ((
+           2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 1]] + HoldForm[
+           Part[$CellContext`dhRData, 3, 3, 1]] - $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 3, 1, 3]])), {2, 3, 1, 
+       4} -> $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 4]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 2, 3, 1, 4]], {2, 3, 2, 
+       1} -> $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) ($CellContext`M HoldForm[
+           Part[$CellContext`hRData, 1, 3]] + (
+          2 $CellContext`M - $CellContext`r0) ($CellContext`M HoldForm[
+             Part[$CellContext`dhRData, 1, 3, 2]] + (
+            2 $CellContext`M - $CellContext`r0) (-HoldForm[
+               Part[$CellContext`dhRData, 2, 3, 1]] + $CellContext`r0 HoldForm[
+               Part[$CellContext`d2hRData, 2, 3, 2, 1]]))), {2, 3, 2, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-9) $CellContext`M + 2 $CellContext`r0) HoldForm[
+           
+           Part[$CellContext`hRData, 2, 3]] + $CellContext`r0 ((
+            7 $CellContext`M - 2 $CellContext`r0) HoldForm[
+             
+             Part[$CellContext`dhRData, 2, 3, 
+              2]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+           HoldForm[
+             Part[$CellContext`d2hRData, 2, 3, 2, 2]])), {2, 3, 2, 
+       3} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-2) \
+($CellContext`r0 (8 $CellContext`M^2 - 
+          6 $CellContext`M $CellContext`r0 + $CellContext`r0^2) HoldForm[
+           Part[$CellContext`hRData, 2, 2]] + (6 $CellContext`M - 
+          3 $CellContext`r0) HoldForm[
+           
+           Part[$CellContext`hRData, 3, 
+            3]] - $CellContext`r0 ($CellContext`r0 ((-2) $CellContext`M + \
+$CellContext`r0)^2 HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 2]] + (5 $CellContext`M - 
+           2 $CellContext`r0) HoldForm[
+            Part[$CellContext`dhRData, 2, 3, 3]] + (
+           2 $CellContext`M - $CellContext`r0) (HoldForm[
+             Part[$CellContext`dhRData, 3, 3, 2]] - $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 3, 2, 3]]))), {2, 3, 2, 
+       4} -> $CellContext`r0^(-2) (3 HoldForm[
+           
+           Part[$CellContext`hRData, 3, 
+            4]] + $CellContext`r0 ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) ((5 $CellContext`M - 2 $CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 2, 3, 4]] + (
+            2 $CellContext`M - $CellContext`r0) (HoldForm[
+              Part[$CellContext`dhRData, 3, 4, 2]] - $CellContext`r0 
+            HoldForm[
+              Part[$CellContext`d2hRData, 2, 3, 2, 4]]))), {2, 3, 3, 
+       1} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-1) \
+($CellContext`M ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 2]] + $CellContext`M HoldForm[
+           Part[$CellContext`dhRData, 1, 3, 3]] - (
+         2 $CellContext`M - $CellContext`r0) ((
+           2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 1]] + HoldForm[
+           Part[$CellContext`dhRData, 3, 3, 1]] - $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 3, 3, 1]])), {2, 3, 3, 
+       2} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-2) \
+($CellContext`r0 (10 $CellContext`M^2 - 
+          7 $CellContext`M $CellContext`r0 + $CellContext`r0^2) HoldForm[
+           Part[$CellContext`hRData, 2, 2]] + (7 $CellContext`M - 
+          3 $CellContext`r0) HoldForm[
+           
+           Part[$CellContext`hRData, 3, 
+            3]] - $CellContext`r0 ($CellContext`r0 ((-2) $CellContext`M + \
+$CellContext`r0)^2 HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 2]] + (5 $CellContext`M - 
+           2 $CellContext`r0) HoldForm[
+            Part[$CellContext`dhRData, 2, 3, 3]] + (
+           2 $CellContext`M - $CellContext`r0) (HoldForm[
+             Part[$CellContext`dhRData, 3, 3, 2]] - $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 3, 3, 2]]))), {2, 3, 3, 
+       3} -> (-5 + 11 $CellContext`M/$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 3]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 2, 3]] - 2 $CellContext`M HoldForm[
+         Part[$CellContext`dhRData, 2, 3, 2]] + $CellContext`r0 HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 2]] - 2 $CellContext`r0^(-1) 
+       HoldForm[
+         Part[$CellContext`dhRData, 3, 3, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 2, 3, 3, 3]], {2, 3, 3, 
+       4} -> $CellContext`r0^(-1) ((2 $CellContext`M - $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            4]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 2, 4]] - HoldForm[
+         Part[$CellContext`dhRData, 3, 3, 4]] - HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 3, 3, 4]]), {2, 3, 4, 
+       1} -> $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 3, 4]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 2, 3, 4, 1]], {2, 3, 4, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-7) $CellContext`M + 3 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 3, 4]] + (5 $CellContext`M - 
+          2 $CellContext`r0) $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 2, 3, 4]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (HoldForm[
+            Part[$CellContext`dhRData, 3, 4, 2]] - $CellContext`r0 HoldForm[
+            Part[$CellContext`d2hRData, 2, 3, 4, 2]])), {2, 3, 4, 
+       3} -> $CellContext`r0^(-1) ((4 $CellContext`M - $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            4]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 2, 4]] - HoldForm[
+         Part[$CellContext`dhRData, 3, 3, 4]] - HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 3, 4, 3]]), {2, 3, 4, 
+       4} -> $CellContext`r0^(-1) ((5 $CellContext`M - 2 $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            3]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 3, 2]] - 2 HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 4]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 3, 4, 4]]), {2, 4, 1, 
+       1} -> $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] + 
+       2 $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 1]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 2, 4, 1, 1]], {2, 4, 1, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) ($CellContext`M ((-4) $CellContext`M + 
+          3 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 4]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 ($CellContext`M 
+           HoldForm[
+             Part[$CellContext`dhRData, 1, 4, 2]] + (
+            2 $CellContext`M - $CellContext`r0) (-HoldForm[
+               Part[$CellContext`dhRData, 2, 4, 1]] + $CellContext`r0 HoldForm[
+               Part[$CellContext`d2hRData, 2, 4, 1, 2]]))), {2, 4, 1, 
+       3} -> $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 3]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 2, 4, 1, 3]], {2, 4, 1, 
+       4} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-1) (
+        2 $CellContext`M ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 2]] + $CellContext`M HoldForm[
+           Part[$CellContext`dhRData, 1, 4, 4]] - (
+         2 $CellContext`M - $CellContext`r0) ((
+           2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 1]] + HoldForm[
+           Part[$CellContext`dhRData, 4, 4, 1]] - $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 4, 1, 4]])), {2, 4, 2, 
+       1} -> $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-2) ($CellContext`M HoldForm[
+           Part[$CellContext`hRData, 1, 4]] + (
+          2 $CellContext`M - $CellContext`r0) ($CellContext`M HoldForm[
+             Part[$CellContext`dhRData, 1, 4, 2]] + (
+            2 $CellContext`M - $CellContext`r0) (-HoldForm[
+               Part[$CellContext`dhRData, 2, 4, 1]] + $CellContext`r0 HoldForm[
+               Part[$CellContext`d2hRData, 2, 4, 2, 1]]))), {2, 4, 2, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-9) $CellContext`M + 2 $CellContext`r0) HoldForm[
+           
+           Part[$CellContext`hRData, 2, 4]] + $CellContext`r0 ((
+            7 $CellContext`M - 2 $CellContext`r0) HoldForm[
+             
+             Part[$CellContext`dhRData, 2, 4, 
+              2]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+           HoldForm[
+             Part[$CellContext`d2hRData, 2, 4, 2, 2]])), {2, 4, 2, 
+       3} -> $CellContext`r0^(-2) (3 HoldForm[
+           
+           Part[$CellContext`hRData, 3, 
+            4]] + $CellContext`r0 ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) ((5 $CellContext`M - 2 $CellContext`r0) HoldForm[
+             Part[$CellContext`dhRData, 2, 4, 3]] + (
+            2 $CellContext`M - $CellContext`r0) (HoldForm[
+              Part[$CellContext`dhRData, 3, 4, 2]] - $CellContext`r0 
+            HoldForm[
+              Part[$CellContext`d2hRData, 2, 4, 2, 3]]))), {2, 4, 2, 
+       4} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-2) \
+($CellContext`r0 (8 $CellContext`M^2 - 
+          6 $CellContext`M $CellContext`r0 + $CellContext`r0^2) HoldForm[
+           Part[$CellContext`hRData, 2, 2]] + (6 $CellContext`M - 
+          3 $CellContext`r0) HoldForm[
+           
+           Part[$CellContext`hRData, 4, 
+            4]] - $CellContext`r0 ($CellContext`r0 ((-2) $CellContext`M + \
+$CellContext`r0)^2 HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 2]] + (5 $CellContext`M - 
+           2 $CellContext`r0) HoldForm[
+            Part[$CellContext`dhRData, 2, 4, 4]] + (
+           2 $CellContext`M - $CellContext`r0) (HoldForm[
+             Part[$CellContext`dhRData, 4, 4, 2]] - $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 4, 2, 4]]))), {2, 4, 3, 
+       1} -> $CellContext`M (
+          2 $CellContext`M $CellContext`r0 - $CellContext`r0^2)^(-1) 
+        HoldForm[
+          Part[$CellContext`dhRData, 1, 4, 3]] - $CellContext`r0^(-1) HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 2, 4, 3, 1]], {2, 4, 3, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-7) $CellContext`M + 3 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 3, 4]] + (5 $CellContext`M - 
+          2 $CellContext`r0) $CellContext`r0 HoldForm[
+           Part[$CellContext`dhRData, 2, 4, 3]] + (
+          2 $CellContext`M - $CellContext`r0) $CellContext`r0 (HoldForm[
+            Part[$CellContext`dhRData, 3, 4, 2]] - $CellContext`r0 HoldForm[
+            Part[$CellContext`d2hRData, 2, 4, 3, 2]])), {2, 4, 3, 
+       3} -> $CellContext`r0^(-1) ((5 $CellContext`M - $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            4]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 4, 2]] - 2 HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 4, 3, 3]]), {2, 4, 3, 
+       4} -> $CellContext`r0^(-1) ((4 $CellContext`M - 2 $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            3]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 2, 3]] - HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 4]] - HoldForm[
+         Part[$CellContext`dhRData, 4, 4, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 4, 3, 4]]), {2, 4, 4, 
+       1} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-1) \
+($CellContext`M ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 1, 2]] + $CellContext`M HoldForm[
+           Part[$CellContext`dhRData, 1, 4, 4]] - (
+         2 $CellContext`M - $CellContext`r0) ((
+           2 $CellContext`M - $CellContext`r0) $CellContext`r0 HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 1]] + HoldForm[
+           Part[$CellContext`dhRData, 4, 4, 1]] - $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 4, 4, 1]])), {2, 4, 4, 
+       2} -> (2 $CellContext`M - $CellContext`r0)^(-1) $CellContext`r0^(-2) \
+($CellContext`r0 (10 $CellContext`M^2 - 
+          7 $CellContext`M $CellContext`r0 + $CellContext`r0^2) HoldForm[
+           Part[$CellContext`hRData, 2, 2]] + (7 $CellContext`M - 
+          3 $CellContext`r0) HoldForm[
+           
+           Part[$CellContext`hRData, 4, 
+            4]] - $CellContext`r0 ($CellContext`r0 ((-2) $CellContext`M + \
+$CellContext`r0)^2 HoldForm[
+            Part[$CellContext`dhRData, 2, 2, 2]] + (5 $CellContext`M - 
+           2 $CellContext`r0) HoldForm[
+            Part[$CellContext`dhRData, 2, 4, 4]] + (
+           2 $CellContext`M - $CellContext`r0) (HoldForm[
+             Part[$CellContext`dhRData, 4, 4, 2]] - $CellContext`r0 HoldForm[
+             Part[$CellContext`d2hRData, 2, 4, 4, 2]]))), {2, 4, 4, 
+       3} -> $CellContext`r0^(-1) (
+        2 ($CellContext`M - $CellContext`r0) HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            3]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 2, 3]] - HoldForm[
+         Part[$CellContext`dhRData, 3, 4, 4]] - HoldForm[
+         Part[$CellContext`dhRData, 4, 4, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 2, 4, 4, 3]]), {2, 4, 4, 
+       4} -> (-5 + 11 $CellContext`M/$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 2, 4]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 2, 4]] - 2 $CellContext`M HoldForm[
+         Part[$CellContext`dhRData, 2, 4, 2]] + $CellContext`r0 HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 2]] - 2 $CellContext`r0^(-1) 
+       HoldForm[
+         Part[$CellContext`dhRData, 4, 4, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 2, 4, 4, 4]], {3, 3, 1, 1} -> 
+      2 $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 3, 3]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 3, 3, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 1, 1]], {3, 3, 1, 
+       2} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 3, 3, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 1, 2]], {3, 3, 1, 
+       3} -> (-2) $CellContext`M $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 1, 3]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 1, 3]], {3, 3, 1, 4} -> HoldForm[
+        Part[$CellContext`d2hRData, 3, 3, 1, 4]], {3, 3, 2, 
+       1} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 3, 3, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 2, 1]], {3, 3, 2, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-14) $CellContext`M + 6 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 3, 3]] + $CellContext`r0 ((
+            9 $CellContext`M - 4 $CellContext`r0) HoldForm[
+             
+             Part[$CellContext`dhRData, 3, 3, 
+              2]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+           HoldForm[
+             Part[$CellContext`d2hRData, 3, 3, 2, 2]])), {3, 3, 2, 
+       3} -> $CellContext`r0^(-1) (
+        2 (5 $CellContext`M - 2 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 2, 3]] + 
+        2 $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`dhRData, 2, 3, 2]] - 3 HoldForm[
+          Part[$CellContext`dhRData, 3, 3, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 3, 3, 2, 3]]), {3, 3, 2, 
+       4} -> (-3) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`dhRData, 3, 3, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 2, 4]], {3, 3, 3, 
+       1} -> ((-4) $CellContext`M + 2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 3, 1]], {3, 3, 3, 
+       2} -> $CellContext`r0^(-1) (
+        4 (3 $CellContext`M - $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 2, 3]] + 
+        2 $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`dhRData, 2, 3, 2]] - 3 HoldForm[
+          Part[$CellContext`dhRData, 3, 3, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 3, 3, 3, 2]]), {3, 3, 3, 3} -> 
+      2 ((-2) $CellContext`M + $CellContext`r0)^2 HoldForm[
+          Part[$CellContext`hRData, 2, 2]] + (8 $CellContext`M - 
+         4 $CellContext`r0) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 3, 3]] + ((-8) $CellContext`M + 
+         4 $CellContext`r0) HoldForm[
+          
+          Part[$CellContext`dhRData, 2, 3, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 3, 3, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 3, 3]], {3, 3, 3, 
+       4} -> ((-4) $CellContext`M + 2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 3, 4]], {3, 3, 4, 1} -> HoldForm[
+        Part[$CellContext`d2hRData, 3, 3, 4, 1]], {3, 3, 4, 
+       2} -> (-3) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`dhRData, 3, 3, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 4, 2]], {3, 3, 4, 3} -> 
+      4 $CellContext`M $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 4, 3]], {3, 3, 4, 
+       4} -> (-2 + 4 $CellContext`M/$CellContext`r0) HoldForm[
+          
+          Part[$CellContext`hRData, 3, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 3, 3, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 3, 4, 4]], {3, 4, 1, 1} -> 
+      2 $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 1, 1]], {3, 4, 1, 
+       2} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 1, 2]], {3, 4, 1, 
+       3} -> -$CellContext`M $CellContext`r0^(-1) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           4]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 1, 3]], {3, 4, 1, 
+       4} -> -$CellContext`M $CellContext`r0^(-1) HoldForm[
+          
+          Part[$CellContext`hRData, 1, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 1, 4]], {3, 4, 2, 
+       1} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 2, 1]], {3, 4, 2, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-14) $CellContext`M + 6 $CellContext`r0) HoldForm[
+           
+           Part[$CellContext`hRData, 3, 4]] + $CellContext`r0 ((
+            9 $CellContext`M - 4 $CellContext`r0) HoldForm[
+             
+             Part[$CellContext`dhRData, 3, 4, 
+              2]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+           HoldForm[
+             Part[$CellContext`d2hRData, 3, 4, 2, 2]])), {3, 4, 2, 
+       3} -> $CellContext`r0^(-1) ((5 $CellContext`M - 2 $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            4]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 4, 2]] - 3 HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 3, 4, 2, 3]]), {3, 4, 2, 
+       4} -> $CellContext`r0^(-1) ((5 $CellContext`M - 2 $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            3]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 3, 2]] - 3 HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 4]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 3, 4, 2, 4]]), {3, 4, 3, 
+       1} -> ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 3, 1]], {3, 4, 3, 
+       2} -> $CellContext`r0^(-1) ((6 $CellContext`M - 2 $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            4]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 4, 2]] - 3 HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 3]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 3, 4, 3, 2]]), {3, 4, 3, 
+       3} -> (6 $CellContext`M - 2 $CellContext`r0) $CellContext`r0^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          
+          Part[$CellContext`dhRData, 2, 4, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 3, 3]], {3, 4, 3, 
+       4} -> ((-2) $CellContext`M + $CellContext`r0)^2 HoldForm[
+          Part[$CellContext`hRData, 2, 2]] + (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-1) HoldForm[
+          
+          Part[$CellContext`hRData, 3, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          
+          Part[$CellContext`dhRData, 2, 3, 
+           3]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 3, 4]], {3, 4, 4, 
+       1} -> ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 4, 1]], {3, 4, 4, 
+       2} -> $CellContext`r0^(-1) ((6 $CellContext`M - 2 $CellContext`r0) 
+         HoldForm[
+           
+           Part[$CellContext`hRData, 2, 
+            3]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+         HoldForm[
+           Part[$CellContext`dhRData, 2, 3, 2]] - 3 HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 4]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 3, 4, 4, 2]]), {3, 4, 4, 
+       3} -> ((-2) $CellContext`M + $CellContext`r0)^2 HoldForm[
+          Part[$CellContext`hRData, 2, 2]] - HoldForm[
+        Part[$CellContext`hRData, 3, 3]] + 
+       2 $CellContext`M $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 4, 4]] - 2 $CellContext`M HoldForm[
+         Part[$CellContext`dhRData, 2, 3, 3]] + $CellContext`r0 HoldForm[
+          Part[$CellContext`dhRData, 2, 3, 3]] - 2 $CellContext`M HoldForm[
+         Part[$CellContext`dhRData, 2, 4, 4]] + $CellContext`r0 HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 4]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 4, 3]], {3, 4, 4, 
+       4} -> (6 $CellContext`M - 3 $CellContext`r0) $CellContext`r0^(-1) 
+        HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          
+          Part[$CellContext`dhRData, 2, 3, 
+           4]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 3, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 3, 4, 4, 4]], {4, 4, 1, 1} -> 
+      2 $CellContext`M $CellContext`r0^(-4) ((-2) $CellContext`M + \
+$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 4, 4]] + $CellContext`M (
+         2 $CellContext`M - $CellContext`r0) $CellContext`r0^(-3) HoldForm[
+          Part[$CellContext`dhRData, 4, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 1, 1]], {4, 4, 1, 
+       2} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 4, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 1, 2]], {4, 4, 1, 3} -> HoldForm[
+        Part[$CellContext`d2hRData, 4, 4, 1, 3]], {4, 4, 1, 
+       4} -> (-2) $CellContext`M $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 1, 4]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 1, 4]], {4, 4, 2, 
+       1} -> (3 $CellContext`M - 
+         2 $CellContext`r0) $CellContext`r0^(-1) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) HoldForm[
+          Part[$CellContext`dhRData, 4, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 2, 1]], {4, 4, 2, 
+       2} -> $CellContext`r0^(-2) ((-2) $CellContext`M + \
+$CellContext`r0)^(-1) (((-14) $CellContext`M + 6 $CellContext`r0) HoldForm[
+           
+           Part[$CellContext`hRData, 4, 4]] + $CellContext`r0 ((
+            9 $CellContext`M - 4 $CellContext`r0) HoldForm[
+             
+             Part[$CellContext`dhRData, 4, 4, 
+              2]] + $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) 
+           HoldForm[
+             Part[$CellContext`d2hRData, 4, 4, 2, 2]])), {4, 4, 2, 
+       3} -> (-3) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`dhRData, 4, 4, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 2, 3]], {4, 4, 2, 
+       4} -> $CellContext`r0^(-1) (
+        2 (5 $CellContext`M - 2 $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 2, 4]] + 
+        2 $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`dhRData, 2, 4, 2]] - 3 HoldForm[
+          Part[$CellContext`dhRData, 4, 4, 4]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 4, 4, 2, 4]]), {4, 4, 3, 1} -> HoldForm[
+        Part[$CellContext`d2hRData, 4, 4, 3, 1]], {4, 4, 3, 
+       2} -> (-3) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`dhRData, 4, 4, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 3, 2]], {4, 4, 3, 3} -> 
+      4 $CellContext`M $CellContext`r0^(-1) HoldForm[
+          
+          Part[$CellContext`hRData, 4, 
+           4]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 4, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 3, 3]], {4, 4, 3, 
+       4} -> (-2 + 4 $CellContext`M/$CellContext`r0) HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 3, 4]], {4, 4, 4, 
+       1} -> ((-4) $CellContext`M + 2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 1]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 4, 1]], {4, 4, 4, 
+       2} -> $CellContext`r0^(-1) (
+        4 (3 $CellContext`M - $CellContext`r0) HoldForm[
+           Part[$CellContext`hRData, 2, 4]] + 
+        2 $CellContext`r0 ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+           Part[$CellContext`dhRData, 2, 4, 2]] - 3 HoldForm[
+          Part[$CellContext`dhRData, 4, 4, 4]] + $CellContext`r0 HoldForm[
+           Part[$CellContext`d2hRData, 4, 4, 4, 2]]), {4, 4, 4, 
+       3} -> (-2) HoldForm[
+          Part[$CellContext`hRData, 3, 4]] + ((-4) $CellContext`M + 
+         2 $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 2, 4, 3]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 4, 3]], {4, 4, 4, 4} -> 
+      2 ((-2) $CellContext`M + $CellContext`r0)^2 HoldForm[
+          Part[$CellContext`hRData, 2, 2]] + (8 $CellContext`M - 
+         4 $CellContext`r0) $CellContext`r0^(-1) HoldForm[
+          Part[$CellContext`hRData, 4, 4]] + ((-8) $CellContext`M + 
+         4 $CellContext`r0) HoldForm[
+          
+          Part[$CellContext`dhRData, 2, 4, 
+           4]] + ((-2) $CellContext`M + $CellContext`r0) HoldForm[
+          Part[$CellContext`dhRData, 4, 4, 2]] + HoldForm[
+         Part[$CellContext`d2hRData, 4, 4, 4, 4]]}, 
+     Symmetric[{1, 2}]}]],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.925817535851742*^9},
+ CellLabel->"Out[22]=",ExpressionUUID->"65ca6ada-34f3-4955-8644-edf3e557fdea"]
+}, Open  ]]
+},
+Evaluator->"Local 5",
+WindowSize->{808, 910},
+WindowMargins->{{Automatic, 487}, {1, Automatic}},
+FrontEndVersion->"14.0 for Mac OS X x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9b4cb382-7bf4-4e46-8c72-a226ae939313"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 343, 9, 30, "Input",ExpressionUUID->"cb8f02f0-6b6a-4579-83f2-fbdb49da119d"],
+Cell[904, 31, 305, 6, 52, "Input",ExpressionUUID->"e5481aa1-54c2-48c9-b2bc-6dde73d84f4d"],
+Cell[1212, 39, 249, 4, 30, "Input",ExpressionUUID->"0c173d76-dc4a-44f9-9fba-ae50cd702f7f"],
+Cell[1464, 45, 278, 5, 30, "Input",ExpressionUUID->"0c16406e-0416-4cee-b103-1f2e80aa2294"],
+Cell[1745, 52, 489, 13, 30, "Input",ExpressionUUID->"75223f55-3639-4398-a4c2-cfb8bc63b7e6"],
+Cell[CellGroupData[{
+Cell[2259, 69, 2337, 67, 178, "Input",ExpressionUUID->"dea264c8-f203-4687-a75e-3ef9713f911e"],
+Cell[4599, 138, 17852, 361, 62, "Output",ExpressionUUID->"becb2e7f-cf88-4117-8803-09f8c8f82512"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22488, 504, 3280, 94, 241, "Input",ExpressionUUID->"fd89dc24-a8df-47a6-9d4b-281f51574ed4"],
+Cell[25771, 600, 86732, 1625, 62, "Output",ExpressionUUID->"65ca6ada-34f3-4955-8644-edf3e557fdea"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
