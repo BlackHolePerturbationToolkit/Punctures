@@ -31,7 +31,7 @@ identifiers:
     value: 10.5281/zenodo.XXXXXXX
     description: Latest release on Zenodo
   - type: other
-    value: 'arXiv:2508.XXXXX'
+    value: 'arXiv:2508.00087'
     description: ArXiv preprint of the paper
   - type: article
     value: 'Phys. Rev. D 89, 104020 (2014)'
