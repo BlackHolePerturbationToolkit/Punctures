@@ -6,9 +6,9 @@
 3. Start Mathematica and set a value for r0, then run h1P-exact-order-eps2.wl
    (the below SLURM script can be used on a cluster). This generates a set of 
    files, one for each i and separate files for the first and second derivatives.
-2. Run process[r0] inside Process-h1P.nb. This consolidates everything into
+4. Run process[r0] inside Process-h1P.nb. This consolidates everything into
    a single file.
-3. Run h1S-exact-order-eps2.nb. This generates the HDF5 files for h1S, h1R and
+5. Run h1S-exact-order-eps2.nb. This generates the HDF5 files for h1S, h1R and
    h1ret including second derivatives.
 
 ## Example SLURM script
